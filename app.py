@@ -39,13 +39,13 @@ def allprovedores():
 	coleccion=mongo.db.provedores
 	output=[]
 	for s in coleccion.find():
-		output.append({'rut' : s['nombre'], 'nombre' : s['rut'],  'ciudad' : s['ciudad'],  'comuna' : s['comuna'],  'correo' : s['correo'],'telefono' : s['telefono']})
+		output.append({'rut' : s['nombre'], 'nombre' : s['rut'],  'ciudad' : s['ciudad'],  'comuna' : s['comuna'],  'calle' : s['calle'],  'correo' : s['correo'],'telefono' : s['telefono']})
 	return render_template('provedortabla.html',provedores=output)
 
 @app.route("/ingresar_provedor", methods=['GET', 'POST'])
 def addprovedor():
 	if request.method == 'POST':
-		#usuarios ={'rut':'194360169','nombre': 'Francisco', 'ciudad': 'Iquique','comuna':'Iquique','correo':'francisco123@gmail.com','telefono':'965465674'}
+		#usuarios ={'rut':'194360169','nombre': 'Francisco', 'ciudad': 'Iquique','comuna':'Iquique', 'calle':'callefalsa #123', 'correo':'francisco123@gmail.com','telefono':'965465674'}
 		coleccion=mongo.db.provedores
 		x=coleccion.insert(usuarios)
 		# agregar if para verificar si se agrego correctamente, de lo contrario volver al ingreso de nuevo provedor provedores.html*

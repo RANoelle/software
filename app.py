@@ -33,9 +33,11 @@ def register():
 
 @app.route("/lista_provedor", methods=['GET', 'POST'])
 def allprovedores():
-	if request.method == 'POST'
-		usuario =mongo.db.provedores
-		nombre=
+	if request.method == 'POST':
+		num1=request.form.get("search")
+		coleccion=mongo.db.provedores
+		busqueda = coleccion.find({ 'name': num1  })
+		return render_template('provedortabla.html', proveedores=busqueda)
 	coleccion=mongo.db.provedores
 	output=[]
 	for s in coleccion.find():

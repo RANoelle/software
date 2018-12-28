@@ -14,6 +14,23 @@ app.config['MONGO_URI'] = 'mongodb://cesariqq:software123@ds015953.mlab.com:1595
 
 mongo = PyMongo(app)
 
+@app.route('/login', methods=['POST'])
+def login():
+    users = mongo.db.usuarios
+    login_user = users.find_one({'name' : request.form['username']})
+
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.usuarios
+        existing_user = users.find_one({'name' : request.form['username']})
+
+        
+        return 'That username already exists!'
+
+    return render_template('register.html')
+
 @app.route("/lista_provedor", methods=['GET', 'POST'])
 def allprovedores():
 	if request.method == 'POST'

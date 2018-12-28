@@ -14,10 +14,20 @@ app.config['MONGO_URI'] = 'mongodb://cesariqq:software123@ds015953.mlab.com:1595
 
 mongo = PyMongo(app)
 
-@app.route('/login', methods=['POST'])
+@app.route("/login", methods=['GET','POST'])
 def login():
-    users = mongo.db.usuarios
-    login_user = users.find_one({'name' : request.form['username']})
+	if request.method == 'POST':
+		aux = request.form.get('id')
+		aux2 = request.form.get('password')
+		coleccion=mongo.db.usuario
+		busqueda = coleccion.find({'nombre' : aux})
+		aux3=busqueda[0]['password']
+		if aux2 == aux3:
+			return render_template('index.html')
+		else:
+			return render_template('login.html',parametro="panchoqlo")
+
+	return render_template('login.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])

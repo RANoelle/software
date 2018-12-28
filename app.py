@@ -35,7 +35,7 @@ def addprovedor():
 		return render_template('succes.html')
 	else:
 		return render_template('provedores.html')
-
+PANCHO MENTIROSO
 
 
 if __name__=="__main__":

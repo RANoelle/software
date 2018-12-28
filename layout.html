@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	 <head>
+	 	<title>{% block title %} {% endblock %}</title>
+	 	<link <link rel="stylesheet" href="../static/css/w3.css"/>
+	 	<link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 </head>
+	 <body>
+	 	<nav class="navbar navbar-default w3-light-grey">
+	 		<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+	</button>
+	 	<div class="w3-bar">
+	 		<a class="navbar-brand" href="#">LONZA</a>
+	{% if 3>2 %}
+
+			<a href="/home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+		  <div class="w3-dropdown-hover">
+		    <button class="w3-button w3-padding-large ">Provedores</button>
+		    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+		      <a href="/ingresar_provedor" class="w3-bar-item w3-button">Ingresar Provedor</a>
+		      <a href="/lista_provedor" class="w3-bar-item w3-button">Listar Provedores</a>
+		    </div>
+		  </div>
+		  <div class="w3-dropdown-hover">
+		    <button class="w3-button w3-padding-large">Materiales</button>
+		    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+		      <a href="/ingresar_material" class="w3-bar-item w3-button">Ingresar Material</a>
+		      <a href="/buscar_material" class="w3-bar-item w3-button">Buscar Materiales</a>
+
+		    </div>
+		  </div>
+		  <a href="/cerrar_sesion" class="w3-bar-item w3-button  w3-padding-large">Cerrar Sesion</a>
+		</div>
+		</nav>
+	{% block content %} {% endblock %}
+	{% else %}
+		<a href="/login" class="w3-bar-item w3-button w3-padding-large">Login</a>
+		</div>
+		</nav>
+		<h1>Inicie Sesion para Continuar</h1>
+	{% endif %}
+	 </body>
+		
+</html>
+

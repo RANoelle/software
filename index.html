@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body %}
+
+<!-- Section -->
+<section>
+
+
+	<center>
+		<header class="main">
+			<h2>Sistema de Control de Recepcion y Despacho</h2>
+		</header>
+
+		{% with messages = get_flashed_messages()  %}
+			{% if messages %}
+				{% for message in messages %}
+
+					<h3 style="color: RED">{{ message }}</h3>
+
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+
+		Para ingresar a las opciones por favor utilizar menú de la Izquierda.
+	</center>
+
+</section>
+
+
+
+
+{% endblock %}

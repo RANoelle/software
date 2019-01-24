@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos del Cliente Empresa</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>RUT:</td>
+              <td>{{empresa['rut']}}</td>
+          </tr>
+          <tr>
+              <td>NOMBRES:</td>
+              <td>{{empresa['nombre']}}</td>
+          </tr>
+           <tr>
+               <td>CIUDAD:</td>
+               <td>{{empresa['ciudad']}}</td>
+           </tr>
+           <tr>
+               <td>COMUNA:</td>
+               <td>{{empresa['comuna']}}</td>
+           </tr>
+           <tr>
+               <td>EMAIL:</td>
+               <td>{{empresa['correo']}}</td>
+           </tr>
+           <tr>
+               <td>NOMBRE CONTACTO:</td>
+               <td>{{empresa['nombreContacto']}}</td>
+           </tr>
+           <tr>
+               <td>CELULAR CONTACTO:</td>
+               <td>{{empresa['celularContacto']}}</td>
+           </tr>
+        </table>
+
+        {% if accion=='Modificar' %}
+            <a href="/editClienteEmp/{{empresa['rut']}}" class="button big">modificar</a>
+        {% endif %}
+        {% if accion=='Eliminar' %}
+            <a href="/deleteClienteEmp/{{empresa['rut']}}" class="button big">eliminar</a>
+        {% endif %}
+
+    </section>
+
+{% endblock %}

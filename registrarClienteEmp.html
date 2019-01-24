@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+		<!-- Content -->
+		<section>
+			<header class="main">
+				<h2>Registrar Cliente Empresa</h2>
+			</header>
+                      
+			<h3>Datos del Cliente Empresa</h3>
+            <form id="formProveedor" name="formProveedor" method="post" action="">
+              
+                <table>
+                    
+                    <tr>
+                        <td>Rut Empresa:</td>
+                        {% if accion == 'Modificar' %}
+                            <td colspan="3">{{ form.rut.data }}</td>
+                            <input type="hidden" name="rut" value="{{ form.rut.data }}">
+                        {% endif %}
+                        {% if accion == 'Registrar' %}
+                            <td colspan="3">{{ cargar_campos(form.rut) }}</td>
+                        {% endif %}
+                        
+                    </tr>
+                    <tr>
+                        <td>Nombre Empresa:</td>
+                        <td colspan="3">{{ cargar_campos(form.nombre) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ciudad:</td>
+                        <td>{{ cargar_campos(form.ciudad) }}</td>
+                        <td>Comuna:</td>
+                        <td>{{ cargar_campos(form.comuna) }}</td>
+                    </tr>
+                    <tr> 
+                        <td>E-Mail:</td>
+                        <td colspan="3">{{ cargar_campos(form.correo) }}</td>
+                    </tr>
+                    
+                    
+              	</table>
+                
+                <h3>Datos de Contacto</h3>
+                
+                <table>
+                    <tr>
+                        <td width="200">Nombre Contacto:</td>
+                        <td colspan="2">{{ cargar_campos(form.nombreContacto) }}</td>
+                    </tr>
+                    
+                    <tr>
+                    	<td width="200">Celular Contacto:</td>
+                        <td width="100"><input type="text" value="  +56" disabled></td>
+                        <td>{{ cargar_campos(form.celularContacto) }}</td>
+                        
+                    </tr>
+                    
+                    
+              	</table>
+
+                 
+                 
+       			<ul class="actions">
+					<li><a href="#" class="button big" onClick="document.getElementById('formProveedor').submit()">Registrar</a></li>
+				</ul>
+               
+            
+            </form> 
+
+ 		</section>
+
+{% endblock %}

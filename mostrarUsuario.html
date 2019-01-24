@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos del Usuario</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>RUT:</td>
+              <td>{{usuario['rut']}}</td>
+          </tr>
+          <tr>
+              <td>NOMBRES:</td>
+              <td>{{usuario['nombres']}}</td>
+          </tr>
+          <tr>
+              <td>APELLIDO PATERNO:</td>
+              <td>{{usuario['apellido1']}}</td>
+           </tr>
+           <tr>
+               <td>APELLIDO MATERNO:</td>
+               <td>{{usuario['apellido2']}}</td>
+           </tr>
+           <tr>
+               <td>FECHA NACIMIENTO:</td>
+               <td>{{usuario['nacimiento']}}</td>
+           </tr>
+           <tr>
+               <td>SUELDO:</td>
+               <td>{{usuario['sueldo']}}</td>
+           </tr>
+           <tr>
+               <td>DIRECCION:</td>
+               <td>{{usuario['direccion']}}</td>
+           </tr>
+           <tr>
+               <td>ESTADO:</td>
+               <td>{{usuario['estado']}}</td>
+           </tr>
+           <tr>
+               <td>CARGO:</td>
+               <td>{{usuario['cargo']}}</td>
+           </tr>
+        </table>
+
+        {% if accion=='Modificar' %}
+            <a href="/editUsuario/{{usuario['rut']}}" class="button big">modificar</a>
+        {% endif %}
+        {% if accion=='Eliminar' %}
+            <a href="/deleteUsuario/{{usuario['rut']}}" class="button big">eliminar</a>
+        {% endif %}
+
+    </section>
+
+{% endblock %}

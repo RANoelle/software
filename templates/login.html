@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+	<head>
+		<title>Login</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="{{url_for('static', filename='css/loginStyle.css')}}">
+
+	</head>
+	<body>
+
+		<form class="login" method="post" action="{{ url_for('login') }}">
+			<center>
+				<img src="{{url_for('static', filename='images/logo1.png')}}" width="180" height="50"><br><br>
+				{% with messages = get_flashed_messages()  %}
+					{% if messages %}
+						{% for message in messages %}
+							<p style="color: RED">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+			</center>
+		<input type="text" name="rut" class="login-input" placeholder="Rut" autofocus>
+		<input type="password" name="password" class="login-input" placeholder="Contraseña">
+		<input type="submit" value="Ingresar" class="login-button">
+		<p class="login-lost"><a href="">Crear Cuenta</a></p>
+		</form>
+
+    </body>
+</html>

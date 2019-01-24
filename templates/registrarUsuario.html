@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+<!-- Content -->
+		<section>
+			<header class="main">
+                <h2>{{ accion }} Usuario</h2>
+			</header>
+
+            <form id="formUsuario" name="formUsuario" method="post" action="">
+
+                <table>
+
+                    <tr>
+                        <td>Rut:</td>
+                        {% if accion == 'Modificar' %}
+                            <td>{{ form.rut.data }}</td>
+                            <input type="hidden" name="rut" value="{{ form.rut.data }}">
+                        {% endif %}
+                        {% if accion == 'Registrar' %}
+                            <td>{{ cargar_campos(form.rut) }}</td>
+                        {% endif %}
+                        <td>Nombres:</td>
+                        <td>{{ cargar_campos(form.nombres) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Apellido Paterno:</td>
+                        <td>{{ cargar_campos(form.apellido1) }}</td>
+                        <td>Apellido Materno:</td>
+                        <td>{{ cargar_campos(form.apellido2) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha Nacimiento:</td>
+                        <td>{{ cargar_campos(form.nacimiento) }}</td>
+                        <td>Sueldo:</td>
+                        <td>{{ cargar_campos(form.sueldo) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Direccion:</td>
+                        <td colspan="3">{{ cargar_campos(form.direccion) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Estado:</td>
+                        <td>{{ cargar_campos(form.estado) }}</td>
+                        <td>Cargo:</td>
+                        <td>{{ cargar_campos(form.cargo) }}</td>
+                    </tr>
+              	</table>
+
+       			<ul class="actions">
+                    {% if accion=='Registrar' %}
+					<li><a href="#" class="button big" onClick="document.getElementById('formUsuario').submit()">Registrar</a></li>
+                    {% endif %}
+                    {% if accion=='Modificar' %}
+                        <li><a href="#" class="button big" onClick="document.getElementById('formUsuario').submit()">Modificar</a></li>
+                    {% endif %}
+				</ul>
+
+            </form>
+
+ 		</section>
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+<!-- Content -->
+<section>
+    <header class="main">
+        <h2>Registrar Producto</h2>
+    </header>
+
+    <h3>Datos del Producto</h3>
+    <form id="formProducto" name="formProducto" method="post" action="">
+              
+        <table>
+
+            <tr>
+                <td>Codigo:</td>
+
+                {% if accion == 'Modificar' %}
+                    <td>{{ form.codigo.data }}</td>
+                    <input type="hidden" name="codigo" value="{{ form.codigo.data }}">
+                {% endif %}
+                {% if accion == 'Registrar' %}
+                    <td>{{ cargar_campos(form.codigo) }}</td>
+                {% endif %}
+                <td>Precio:</td>
+                <td>{{ cargar_campos(form.precio) }}</td>
+                <td>Stock:</td>
+                <td>{{ cargar_campos(form.stock) }}</td>
+            </tr>
+            <tr>
+                <td>Nombre:</td>
+                <td colspan="3">{{ cargar_campos(form.nombre) }}</td>
+                <td>Disponible:</td>
+                <td>{{ cargar_campos(form.disponible) }}</td>
+            </tr>
+            <tr>
+                <td>Descripcion:</td>
+                <td colspan="5">{{ cargar_campos(form.descripcion) }}</td>
+            </tr>
+
+        </table>
+    
+        <ul class="actions">
+            <li><a href="#" class="button big" onClick="document.formProducto.submit()">Registrar</a></li>
+        </ul>
+    </form>
+
+</section>
+
+{% endblock %}

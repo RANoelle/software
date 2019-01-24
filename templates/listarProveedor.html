@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos de los Proveedores</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>RUT</td>
+              <td>NOMBRE</td>
+              <td>CIUADA</td>
+              <td>COMUNA</td>
+              <td>EMAIL</td>
+              <td>NOMBRE CONTACTO</td>
+              <td>CELULAR CONTACTO</td>
+           </tr>
+
+          {% for proveedor in proveedores %}
+          <tr>
+              <td>{{proveedor['rut']}}</td>
+              <td>{{proveedor['nombre']}}</td>
+              <td>{{proveedor['ciudad']}}</td>
+              <td>{{proveedor['comuna']}}</td>
+              <td>{{proveedor['correo']}}</td>
+              <td>{{proveedor['nombreContacto']}}</td>
+              <td>{{proveedor['celularContacto']}}</td>
+           </tr>
+          {% endfor %}
+      </table>
+    </section>
+
+{% endblock %}

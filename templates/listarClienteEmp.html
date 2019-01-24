@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos de las Empresas Clientes</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>RUT</td>
+              <td>NOMBRE</td>
+              <td>CIUADA</td>
+              <td>COMUNA</td>
+              <td>EMAIL</td>
+              <td>NOMBRE CONTACTO</td>
+              <td>CELULAR CONTACTO</td>
+           </tr>
+
+          {% for empresa in empresas %}
+          <tr>
+              <td>{{empresa['rut']}}</td>
+              <td>{{empresa['nombre']}}</td>
+              <td>{{empresa['ciudad']}}</td>
+              <td>{{empresa['comuna']}}</td>
+              <td>{{empresa['correo']}}</td>
+              <td>{{empresa['nombreContacto']}}</td>
+              <td>{{empresa['celularContacto']}}</td>
+           </tr>
+          {% endfor %}
+      </table>
+    </section>
+
+{% endblock %}

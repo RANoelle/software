@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos del Proveedor</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>RUT:</td>
+              <td>{{proveedor['rut']}}</td>
+          </tr>
+          <tr>
+              <td>NOMBRES:</td>
+              <td>{{proveedor['nombre']}}</td>
+          </tr>
+           <tr>
+               <td>CIUDAD:</td>
+               <td>{{proveedor['ciudad']}}</td>
+           </tr>
+           <tr>
+               <td>COMUNA:</td>
+               <td>{{proveedor['comuna']}}</td>
+           </tr>
+           <tr>
+               <td>EMAIL:</td>
+               <td>{{proveedor['correo']}}</td>
+           </tr>
+           <tr>
+               <td>NOMBRE CONTACTO:</td>
+               <td>{{proveedor['nombreContacto']}}</td>
+           </tr>
+           <tr>
+               <td>CELULAR CONTACTO:</td>
+               <td>{{proveedor['celularContacto']}}</td>
+           </tr>
+        </table>
+
+        {% if accion=='Modificar' %}
+            <a href="/editProveedor/{{proveedor['rut']}}" class="button big">modificar</a>
+        {% endif %}
+        {% if accion=='Eliminar' %}
+            <a href="/deleteProveedor/{{proveedor['rut']}}" class="button big">eliminar</a>
+        {% endif %}
+
+    </section>
+
+{% endblock %}

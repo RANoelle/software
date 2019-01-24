@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+<!-- Content -->
+<section>
+    <header class="main">
+        <h2>{{ accion }} {{ buscado }}</h2>
+    </header>
+
+    <form id="formBuscarRUT" name="formBuscarRUT" method="post" action="">
+        <table>
+            <tr>
+                <td>Ingrese Rut:</td>
+                <td>{{ cargar_campos(form.rutbuscado) }}
+                    {% with messages = get_flashed_messages()  %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p style="color: RED">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+				    {% endwith %}</td>
+                <td><input type="submit" value="buscar"></td>
+            </tr>
+        </table>
+    </form>
+</section>
+
+{% endblock %}

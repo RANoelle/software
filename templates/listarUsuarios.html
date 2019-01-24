@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos de los Usuarios</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>RUT</td>
+              <td>NOMBRES</td>
+              <td>A. PATERNO</td>
+              <td>A. MATERNO</td>
+              <td>NACIMIENTO</td>
+              <td>SUELDO</td>
+              <td>DIRECCION</td>
+              <td>ESTADO</td>
+              <td>CARGO</td>
+           </tr>
+
+          {% for usuario in usuarios %}
+          <tr>
+              <td>{{usuario['rut']}}</td>
+              <td>{{usuario['nombres']}}</td>
+              <td>{{usuario['apellido1']}}</td>
+              <td>{{usuario['apellido2']}}</td>
+              <td>{{usuario['nacimiento']}}</td>
+              <td>{{usuario['sueldo']}}</td>
+              <td>{{usuario['direccion']}}</td>
+              <td>{{usuario['estado']}}</td>
+              <td>{{usuario['cargo']}}</td>
+           </tr>
+          {% endfor %}
+      </table>
+    </section>
+
+{% endblock %}

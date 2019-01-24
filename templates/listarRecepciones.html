@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos de las Recpciones</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>ID</td>
+              <td>RESPONSABLE</td>
+              <td>PROVEEDOR</td>
+              <td>FECHA</td>
+              <td>HORA</td>
+              <td>FACTURA</td>
+              <td>G. DESPACHO</td>
+           </tr>
+
+          {% for recepcion in recepciones %}
+          <tr>
+              <td>{{recepcion['_id']}}</td>
+              <td>{{recepcion['rutresponsable']}}</td>
+              <td>{{recepcion['rutproveedor']}}</td>
+              <td>{{recepcion['fecha']}}</td>
+              <td>{{recepcion['hora']}}</td>
+              <td>{{recepcion['factura']}}</td>
+              <td>{{recepcion['guiadespacho']}}</td>
+           </tr>
+          {% endfor %}
+      </table>
+    </section>
+
+{% endblock %}

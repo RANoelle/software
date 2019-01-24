@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+	<head>
+		<title>Sistema</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="{{url_for('static', filename='css/ie9.css')}}" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="{{url_for('static', filename='css/ie8.css')}}" /><![endif]-->
+        <!--[if lte IE 8]><script src="{{url_for('static', filename='js/ie/html5shiv.js')}}"></script><![endif]-->
+
+        <script src="{{url_for('static', filename='js/ie/respond.min.js')}}"></script>
+		<script src="{{url_for('static', filename='js/generaClave.js')}}"></script>
+		<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+		<script src="{{url_for('static', filename='js/skel.min.js')}}"></script>
+		<script src="{{url_for('static', filename='js/util.js')}}"></script>
+		<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+
+	</head>
+
+	<body>
+		{% if session['loggedIn'] != True %}
+			<script type="text/javascript">window.location="{{url_for('login')}}";</script>
+		{% endif %}
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="#" class="logo">
+										<img src="{{url_for('static', filename='images/logo1.png')}}" width="150" height="42">
+									</a>
+									<div align="right">
+										{{ 	session['nombre'] }}<br>
+										<a href="/logout">Cerrar Sesión</a>
+									</div>
+								</header>
+
+{% block body %}
+
+{% endblock %}
+
+                        </div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+
+							<!-- Menu -->
+							<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									{% set accion = ['Mostrar','Modificar','Eliminar','Buscar','Crear Cuenta','Buscar Cuenta','Vincular'] %}
+									{% set buscado = ['Usuario','Proveedor'] %}
+									<ul>
+										{% if session['privilegios'] == 'ADMINISTRADOR' %}
+											<li>
+												<span class="opener">Usuarios</span>
+												<ul>
+													<li><a href="{{url_for('addUsuario')}}">Nuevo Usuario</a></li>
+													<li><a href="/findRUT/{{accion[1]}}/{{buscado[0]}}">Modificar Usuario</a></li>
+													<li><a href="/findRUT/{{accion[2]}}/{{buscado[0]}}">Eliminar Usuario</a></li>
+													<li><a href="/findRUT/{{accion[3]}}/{{buscado[0]}}">Buscar Usuario</a></li>
+													<li><a href="{{url_for('listUsuario')}}">Listar Usuarios</a></li>
+												</ul>
+											</li>
+										{% endif %}
+										<li>
+											<span class="opener">Cliente Empresa</span>
+											<ul>
+												{% if session['privilegios'] == 'ADMINISTRADOR' %}
+													<li><a href="{{url_for('addClienteEmp')}}">Nueva Empresa</a></li>
+													<li><a href="/findClienteEmp/{{accion[1]}}">Modificar Empresa</a></li>
+													<li><a href="/findClienteEmp/{{accion[2]}}">Eliminar Empresa</a></li>
+												{% endif %}
+                                                <li><a href="/findClienteEmp/{{accion[3]}}">Buscar Empresa</a></li>
+												<li><a href="{{url_for('listClienteEmp')}}">Listar Empresas</a></li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Proveedores</span>
+											<ul>
+												{% if session['privilegios'] == 'ADMINISTRADOR' %}
+													<li><a href="{{url_for('addProveedor')}}">Nuevo Proveedor</a></li>
+													<li><a href="/findRUT/{{accion[1]}}/{{buscado[1]}}">Modificar Proveedor</a></li>
+													<li><a href="/findRUT/{{accion[2]}}/{{buscado[1]}}">Eliminar Proveedor</a></li>
+												{% endif %}
+                                                <li><a href="/findRUT/{{accion[3]}}/{{buscado[1]}}">Buscar Proveedor</a></li>
+												<li><a href="{{url_for('listProveedor')}}">Listar Proveedores</a></li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Productos</span>
+											<ul>
+												<li><a href="{{url_for('addProducto')}}">Ingresar Producto</a></li>
+												<li><a href="/findProducto/{{accion[0]}}">Mostrar Producto</a></li>
+												<li><a href="/findProducto/{{accion[1]}}">Modificar Producto</a></li>
+												<li><a href="/findProducto/{{accion[2]}}">Eliminar Producto</a></li>
+                                                <li><a href="/findProducto/{{accion[3]}}">Buscar Producto</a></li>
+												<li><a href="{{url_for('listProducto')}}">Listar Productos</a></li>
+											</ul>
+										</li>
+
+										<li>
+											<span class="opener">Recepcion</span>
+											<ul>
+												<li><a href="/findRUT/{{accion[6]}}/{{buscado[1]}}">Ingresar Recepcion</a></li>
+												<li><a href="/findRecepcion/{{accion[3]}}">Buscar Recepcion</a></li>
+												<li><a href="{{url_for('listRecepcion')}}">Listar Recepciones</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Despacho</span>
+											<ul>
+												<li><a href="/addDespacho">Ingresar Despacho</a></li>
+												<li><a href="/findDespacho/{{accion[3]}}">Buscar Despacho</a></li>
+												<li><a href="{{url_for('listDespachos')}}">Listar Despachos</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Generar Reportes</span>
+											<ul>
+												<li><a href="{{url_for('creaDocumento')}}">documento1</a></li>
+												<li><a href="">documento2</a></li>
+												<li><a href="">documento3</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Cuentas de Usuario</span>
+											<ul>
+												<li><a href="{{url_for('editClave')}}">Cambiar Contraseña</a></li>
+												{% if session['privilegios'] == 'ADMINISTRADOR' %}
+													<li><a href="/findRUT/{{accion[4]}}/{{buscado[0]}}">Crear Cuenta de Usuario</a></li>
+													<li><a href="/findRUT/{{accion[5]}}/{{buscado[0]}}">Buscar Cuenta de Usuario</a></li>
+												{% endif %}
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+						</div>
+					</div>
+
+			</div>
+
+	</body>
+</html>

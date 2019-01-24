@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+    <section>
+			<header class="main">
+				<h2>Cambiar Contraseña</h2>
+			</header>
+
+			<h3>Datos del Usuario Actual</h3>
+
+            <table>
+                <tr>
+                    <td>NOMBRE:</td>
+                    <td>{{ session['nombre'] }}</td>
+                </tr>
+                <tr>
+                    <td>RUT:</td>
+                    <td>{{ session['rut'] }}</td>
+                </tr>
+            </table>
+
+            <h3>Ingresar la Nueva Contraseña</h3>
+
+            <form name="formClave" method="post" action="">
+				<table>
+                	<tr>
+                    	<td width="300">Ingresar Contraseña Actual:</td>
+                		<td>{{ cargar_campos(form.claveSesion) }}</td>
+                    </tr>
+
+                    <tr>
+                    	<td>Ingrese Nueva Contraseña:</td>
+                        <td>{{ cargar_campos(form.claveNueva1) }}</td>
+              		</tr>
+                    <tr>
+                        <td>Ingrese Contraseña Nuevamente:</td>
+                        <td>{{ cargar_campos(form.claveNueva2) }}</td>
+                        <td><button type="button" onclick="generarClave(7)">Generar Clave</button></td>
+                    </tr>
+              	</table>
+
+                <center>
+                    <input type="submit" value="Cambiar Contraseña">
+                </center>
+
+          </form>
+    </section>
+
+{% endblock %}

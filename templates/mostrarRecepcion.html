@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h2>Datos de la Recepcion N° {{recepcion['_id']}}</h2>
+        </header>
+        <h3>Datos del Proveedor</h3>
+        <table>
+            <tr>
+                <td><strong>RUT:</strong> {{proveedor['rut']}}</td>
+                <td><strong>Nombre:</strong> {{proveedor['nombre']}}</td>
+                <td><strong>Ciudad:</strong> {{proveedor['ciudad']}}</td>
+            </tr>
+            <tr>
+                <td><strong>Celular Contacto:</strong> {{proveedor['celularContacto']}}</td>
+                <td><strong>Nombre Contacto:</strong> {{proveedor['nombreContacto']}}</td>
+                <td><strong>Comuna:</strong> {{proveedor['comuna']}}</td>
+            </tr>
+            <tr>
+                <td><strong>Email:</strong> {{proveedor['correo']}}</td>
+            </tr>
+        </table>
+        <h3>Datos de Ingreso</h3>
+        <table>
+            <tr>
+                <td><strong>FACTURA:</strong> {{recepcion['factura']}}</td>
+                <td><strong>GUIA DESPACHO:</strong> {{recepcion['guiadespacho']}}</td>
+                <td><strong>FECHA:</strong> {{recepcion['fecha']}}</td>
+                <td><strong>HORA:</strong> {{recepcion['hora']}}</td>
+            </tr>
+            <tr>
+                <td><strong>RUT:</strong> {{responsable['rut']}}</td>
+                <td colspan="3"><strong>RESPONSABLE:</strong> {{responsable['nombres']}} {{responsable['apellido1']}} {{responsable['apellido2']}}</td>
+            </tr>
+        </table>
+
+        <h3>Datos de los Productos</h3>
+        <table>
+            <tr>
+                <td><strong>CODIGO</strong></td>
+                <td><strong>NOMBRE</strong></td>
+                <td><strong>DESCRIPCION</strong></td>
+                <td><strong>DISPONIBLE</strong></td>
+                <td><strong>CANT.</strong></td>
+                <td><strong>PRECIO</strong></td>
+            </tr>
+            {% set largo = productos|length %}
+            {% for i in range(largo) %}
+                  <tr>
+                      <td>{{productos[i]['codigo']}}</td>
+                      <td>{{productos[i]['nombre']}}</td>
+                      <td>{{productos[i]['descripcion']}}</td>
+                      <td>{{productos[i]['disponible']}}</td>
+                      <td>{{cantidades[i]['cantidad']}}</td>
+                      <td>{{productos[i]['precio']}}</td>
+                   </tr>
+
+              {% endfor %}
+        </table>
+
+
+
+
+
+
+        {% if accion=='Modificar' %}
+            <a href="/editUsuario/{{usuario['rut']}}" class="button big">modificar</a>
+        {% endif %}
+        {% if accion=='Eliminar' %}
+            <a href="/deleteUsuario/{{usuario['rut']}}" class="button big">eliminar</a>
+        {% endif %}
+
+    </section>
+
+{% endblock %}

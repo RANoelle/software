@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+<script>
+    function cargarAccion(indicador,item){
+        document.formDespacho.IDquitar.value = item;
+        document.formDespacho.accion.value = indicador;
+        document.formDespacho.submit();
+        return;
+        }
+</script>
+<!-- Content -->
+
+    <header class="main">
+        <h2>Ingresar Despacho</h2>
+    </header>
+
+    {% with messages = get_flashed_messages()  %}
+        {% if messages %}
+            {% for message in messages %}
+
+                <h3 style="color: RED">{{ message }}</h3>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form id="formDespacho" name="formDespacho" method="post" action="">
+        <h3>Datos de Despacho</h3>
+        <table>
+            <tr>
+                <td><strong>Responsable:</strong></td>
+                <td>{{session['nombre']}}</td>
+                <td><strong>Fecha:</strong></td>
+                <td>{{info[0]}}</td>
+                <td><strong>Hora:</strong></td>
+                <td>{{info[1]}}</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Numero Factura Asociada:</td>
+                <td><input type="text" name="factura" value="{{info[2]}}"></td>
+                <td>Orden de Compra:</td>
+                <td><input type="text" name="ordenCompra" value="{{info[3]}}"></td>
+            </tr>
+        </table>
+        <h3>Ingresar Productos</h3>
+      <table>
+            <tr>
+                <td><strong>ITEM</strong></td>
+                <td><strong>CODIGO</strong></td>
+                <td><strong>MONBRE</strong></td>
+                <td><strong>DESCRIPCION</strong></td>
+                <td><strong>CANT.</strong></td>
+                <td><strong>PRECIO</strong></td>
+            </tr>
+
+            {% for i in range(contador) %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    {% set NAME = "codigo"+i|string %}
+                    <td>{{productos[i]['codigo']}}<input type="hidden" name="{{NAME}}" placeholder="Codigo" value="{{productos[i]['codigo']}}"></td>
+                    {% set NAME = "nombre"+i|string %}
+                    <td>{{productos[i]['nombre']}}<input type="hidden" name="{{NAME}}" placeholder="Nombre" value="{{productos[i]['nombre']}}"></td>
+                    {% set NAME = "descripcion"+i|string %}
+                    <td>{{productos[i]['descripcion']}}<input type="hidden" name="{{NAME}}" placeholder="Descripcion" value="{{productos[i]['descripcion']}}"></td>
+                    {% set NAME = "cantidad"+i|string %}
+                    <td><input type="number" name="{{NAME}}" placeholder="Cantidad" value="{{productos[i]['cantidad']}}"></td>
+                    {% set NAME = "precio"+i|string %}
+                    <td>{{productos[i]['precio']}}<input type="hidden" name="{{NAME}}" placeholder="Precio" value="{{productos[i]['precio']}}"></td>
+                    <td>
+                        <a href="#" onClick="cargarAccion('Quitar',{{i}})">
+                            <img src="{{url_for('static', filename='images/equis.png')}}" width="20" height="20">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor -%}
+
+            <input type="hidden" name="accion">
+            <input type="hidden" name="IDquitar">
+            <input type="hidden" name="contador" value="{{contador}}">
+        </table>
+        <table>
+            <tr>
+                <td>Ingrese Codigo Producto:</td>
+                <td>{{ cargar_campos(form.productoBuscado) }}</td>
+                <td><input type="submit" value="buscar"></td>
+            </tr>
+        </table>
+
+        <a href="#" class="button big" onClick="cargarAccion('Registrar')">Registrar</a>
+
+    </form>
+
+
+
+
+</section>
+
+{% endblock %}

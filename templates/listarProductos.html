@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos del Producto</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>CODIGO</td>
+              <td>NOMBRE</td>
+              <td>PRECIO</td>
+              <td>DISPONIBLE</td>
+              <td>DESCRIPCION</td>
+           </tr>
+
+          {% for producto in productos %}
+          <tr>
+              <td>{{producto['codigo']}}</td>
+              <td>{{producto['nombre']}}</td>
+              <td>{{producto['precio']}}</td>
+              <td>{{producto['disponible']}}</td>
+              <td>{{producto['descripcion']}}</td>
+           </tr>
+          {% endfor %}
+      </table>
+    </section>
+
+{% endblock %}

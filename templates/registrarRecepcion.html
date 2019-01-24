@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+<script>
+    function cargarAccion(indicador){
+        document.formRecepcion.accion.value = indicador;
+        document.formRecepcion.submit();
+        return;
+        }
+</script>
+<!-- Content -->
+
+<section>
+    <header class="main">
+        <h2>Registrar Guia de Recepcion</h2>
+    </header>
+
+    {% with messages = get_flashed_messages()  %}
+        {% if messages %}
+            {% for message in messages %}
+
+                <h3 style="color: RED">{{ message }}</h3>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form id="formRecepcion" name="formRecepcion" method="post" action="">
+        <h3>Datos del Proveedor</h3>
+        <table>
+            <tr>
+                <td><strong>RUT:</strong> {{proveedor['rut']}}</td>
+                <td><strong>Nombre:</strong> {{proveedor['nombre']}}</td>
+                <td><strong>Ciudad:</strong> {{proveedor['ciudad']}}</td>
+            </tr>
+            <tr>
+                <td><strong>Celular Contacto:</strong> {{proveedor['celularContacto']}}</td>
+                <td><strong>Nombre Contacto:</strong> {{proveedor['nombreContacto']}}</td>
+                <td><strong>Comuna:</strong> {{proveedor['comuna']}}</td>
+            </tr>
+            <tr>
+                <td><strong>Email:</strong> {{proveedor['correo']}}</td>
+            </tr>
+        </table>
+        <h3>Datos de Recepcion</h3>
+        <table>
+            <tr>
+                <td><strong>Responsable:</strong></td>
+                <td>{{session['nombre']}}</td>
+                <td><strong>Fecha:</strong></td>
+                <td>{{info[0]}}</td>
+                <td><strong>Hora:</strong></td>
+                <td>{{info[1]}}</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Numero Factura Asociada:</td>
+                <td><input type="text" name="factura" value="{{info[2]}}"></td>
+                <td>Numero Guia Despacho:</td>
+                <td><input type="text" name="guiaDespacho" value="{{info[3]}}"></td>
+            </tr>
+        </table>
+
+        <h3>Ingresar Productos</h3>
+        <table>
+            <tr>
+                <td><strong>ITEM</strong></td>
+                <td><strong>CODIGO</strong></td>
+                <td><strong>MONBRE</strong></td>
+                <td><strong>DESCRIPCION</strong></td>
+                <td><strong>CANT.</strong></td>
+                <td><strong>PRECIO</strong></td>
+            </tr>
+
+            {% for i in range(contador) %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    {% set NAME = "codigo"+i|string %}
+                    <td><input type="number" name="{{NAME}}" placeholder="Codigo" value="{{productos[i]['codigo']}}"></td>
+                    {% set NAME = "nombre"+i|string %}
+                    <td><input type="text" name="{{NAME}}" placeholder="Nombre" value="{{productos[i]['nombre']}}"></td>
+                    {% set NAME = "descripcion"+i|string %}
+                    <td><input type="text" name="{{NAME}}" placeholder="Descripcion" value="{{productos[i]['descripcion']}}"></td>
+                    {% set NAME = "cantidad"+i|string %}
+                    <td><input type="number" name="{{NAME}}" placeholder="Cantidad" value="{{productos[i]['cantidad']}}"></td>
+                    {% set NAME = "precio"+i|string %}
+                    <td><input type="number" name="{{NAME}}" placeholder="Precio" value="{{productos[i]['precio']}}"></td>
+                </tr>
+            {% endfor -%}
+
+            <input type="hidden" name="accion">
+            <input type="hidden" name="contador" value="{{contador}}">
+        </table>
+
+        <center>
+            <input type="submit" value="Agregar Producto" onclick="cargarAccion('agregar')">
+            <input type="submit" value="Quitar Ultimo" onclick="cargarAccion('quitar')">
+            <br><br><br><br>
+            <a href="#" class="button big" onClick="cargarAccion('Registrar')">Registrar</a>
+        </center>
+
+
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos del Producto</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>CODIGO:</td>
+              <td>{{producto['codigo']}}</td>
+          </tr>
+          <tr>
+              <td>NOMBRE:</td>
+              <td>{{producto['nombre']}}</td>
+          </tr>
+          <tr>
+              <td>PRECIO:</td>
+              <td>{{producto['precio']}}</td>
+           </tr>
+            <tr>
+              <td>STOCK:</td>
+              <td>{{producto['stock']}}</td>
+           </tr>
+           <tr>
+               <td>DISPONIBLE:</td>
+               <td>{{producto['disponible']}}</td>
+           </tr>
+           <tr>
+               <td>DESCRIPCION:</td>
+               <td>{{producto['descripcion']}}</td>
+           </tr>
+
+        </table>
+
+        {% if accion=='Modificar' %}
+            <a href="/editProducto/{{producto['codigo']}}" class="button big">modificar</a>
+        {% endif %}
+        {% if accion=='Eliminar' %}
+            <a href="/deleteProducto/{{producto['codigo']}}" class="button big">eliminar</a>
+        {% endif %}
+
+    </section>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+<!-- Content -->
+<section>
+    <header class="main">
+        <h2>{{accion}} Despacho</h2>
+    </header>
+
+    <form id="formBuscarDespacho" name="formBuscarDespacho" method="post" action="">
+        <table>
+            <tr>
+                <td>Ingrese ID de la Recepcion:</td>
+                <td>{{ cargar_campos(form.despachoBuscado) }}</td>
+                <td><input type="submit" value="buscar"></td>
+            </tr>
+        </table>
+    </form>
+</section>
+
+{% endblock %}

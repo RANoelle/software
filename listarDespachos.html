@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h3>Datos de los Despachos</h3>
+        </header>
+
+        <table>
+          <tr>
+              <td>ID</td>
+              <td>RESPONSABLE</td>
+              <td>FECHA</td>
+              <td>HORA</td>
+              <td>FACTURA</td>
+              <td>ORDEN COMPRAR</td>
+           </tr>
+
+          {% for despacho in despachos %}
+          <tr>
+              <td>{{despacho['_id']}}</td>
+              <td>{{despacho['rutresponsable']}}</td>
+              <td>{{despacho['fecha']}}</td>
+              <td>{{despacho['hora']}}</td>
+              <td>{{despacho['factura']}}</td>
+              <td>{{despacho['ordencompra']}}</td>
+           </tr>
+          {% endfor %}
+      </table>
+    </section>
+
+{% endblock %}

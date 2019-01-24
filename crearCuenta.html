@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+<!--
+<form action="" method="post">
+    <input type="text" name="rut" placeholder="rut">
+    <input type="text" name="password" placeholder="Contraseña">
+    <select name="estado">
+        <option value="">Seleccionar</option>
+        <option value="ACTIVO">Activo</option>
+        <option value="INACTIVO">Inactivo</option>
+    </select>
+    <input type="submit" value="crear cuenta">
+</form>
+-->
+<section>
+    <header class="main">
+        <h2>Crear Cuenta de Usuario</h2>
+    </header>
+
+    <h3>Datos de Usuario a vincular</h3>
+    <table>
+        <tr>
+            <td>Nombre del Usuario</td>
+            <td>{{ usuario['nombres'] }} {{ usuario['apellido1'] }} {{ usuario['apellido2'] }}</td>
+        </tr>
+        <tr>
+            <td>RUT del Usuario</td>
+            <td>{{ usuario['rut'] }}</td>
+        </tr>
+    </table>
+
+    <h3>Datos de la Cuenta de Usuario a crear</h3>
+
+    <form name="formClave" method="post" action="">
+        <input type="hidden" name="rut" value="{{ rutUsuario }}">
+        <table>
+            <tr>
+                <td width="300">Privilegios:</td>
+                <td colspan="2">{{ cargar_campos(form.privilegios) }}</td>
+            </tr>
+            <tr>
+                <td>Ingrese Contraseña:</td>
+                <td>{{ cargar_campos(form.claveNueva1) }}</td>
+            </tr>
+            <tr>
+                <td>Ingrese Contraseña Nuevamente:</td>
+                <td>{{ cargar_campos(form.claveNueva2) }}</td>
+                <td width="100"><button type="button" onclick="generarClave(7)">Generar Clave</button></td>
+            </tr>
+        </table>
+
+        <ul class="actions">
+            <li><a href="#" class="button big" onClick="document.formClave.submit()">Registrar</a></li>
+            <li><a href="#" class="button big" onClick="document.formClave.reset()">Limpiar</a></li>
+        </ul>
+    </form>
+
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+<!-- Content -->
+<section>
+            
+    <h2>Modificar Cuenta de Usuario</h2>
+    <h3>Datos del Usuario</h3>
+
+    <table>
+        <tr>
+            <td width="300">RUT:</td>
+            <td colspan="2">{{ usuario['rut'] }}</td>
+        </tr>
+        <tr>
+            <td>Nombre del Usuario</td>
+            <td>{{ usuario['nombres'] }} {{ usuario['apellido1'] }} {{ usuario['apellido2'] }}</td>
+        </tr>
+    </table>
+
+    <h3>Modificar Cuenta de Usuario</h3>
+    <form name="formClave" method="post" action="">
+        <table>
+            <tr>
+                <td>Estado de la Cuenta:</td>
+                <td colspan="2">{{ cargar_campos(form.estado) }}</td>
+            </tr>
+            <tr>
+                <td>Privilegios:</td>
+                <td colspan="2">{{ cargar_campos(form.privilegios) }}</td>
+            </tr>
+            <tr>
+                <td>Ingrese Nueva Contraseña:</td>
+                <td>{{ cargar_campos(form.claveNueva1) }}</td>
+            </tr>
+            <tr>
+                <td>Ingrese Contraseña Nuevamente:</td>
+                <td>{{ cargar_campos(form.claveNueva2) }}</td>
+                <td width="100"><button type="button" onclick="generarClave(7)">Generar Clave</button></td>
+            </tr>
+        </table>
+                
+        <center>
+            <button type="button"  onClick="document.formClave.submit()">Actualizar Datos</button>
+        </center>
+                
+    </form>
+            
+</section>
+
+{% endblock %}

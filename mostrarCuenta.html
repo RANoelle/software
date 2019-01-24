@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <!-- Content -->
+    <section>
+        <header class="main">
+            <h2>Datos de la Cuenta</h2>
+        </header>
+
+        <h3>Datos del Usuario</h3>
+        <table>
+          <tr>
+              <td>RUT:</td>
+              <td>{{usuario['rut']}}</td>
+          </tr>
+          <tr>
+              <td>NOMBRE:</td>
+              <td>{{usuario['nombres']}} {{usuario['apellido1']}} {{usuario['apellido2']}}</td>
+          </tr>
+        </table>
+
+        <h3>Datos de la Cuenta de Usuario</h3>
+
+        <table>
+          <tr>
+              <td>CLAVE:</td>
+              <td>{{cuenta['password']}}</td>
+           </tr>
+           <tr>
+               <td>PRIVILEGIOS:</td>
+               <td>{{cuenta['privilegios']}}</td>
+           </tr>
+           <tr>
+               <td>ESTADO:</td>
+               <td>{{cuenta['estado']}}</td>
+           </tr>
+        </table>
+
+        <a href="/editCuenta/{{usuario['rut']}}" class="button big">modificar</a>
+        <a href="/deleteCuenta/{{usuario['rut']}}" class="button big">eliminar</a>
+
+    </section>
+
+{% endblock %}
+

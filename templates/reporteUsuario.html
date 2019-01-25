@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% from "_macros.html" import cargar_campos %}
+
+<!-- Content -->
+<section>
+    <header class="main">
+        <h2>Datos para Generar Reporte</h2>
+    </header>
+
+    <form id="formBuscarRutUser" name="formBuscarRutUser" method="post" action="">
+        <table>
+            <tr>
+                <td>Ingrese Rut:</td>
+                <td>{{ cargar_campos(form.rutUser) }}</td>
+                <td>Buscar:</td>
+                <td>{{ cargar_campos(form.buscaGuia) }}</td>
+            </tr>
+            <tr>
+                <td>Fecha Inicio:</td>
+                <td>{{ cargar_campos(form.fechaInicio) }}</td>
+                <td>Facha Termino:</td>
+                <td>{{ cargar_campos(form.fechaFin) }}</td>
+            </tr>
+        </table>
+        <td><input type="submit" value="Generar Reporte"></td>
+    </form>
+</section>
+
+{% endblock %}

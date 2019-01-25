@@ -35,7 +35,7 @@ class reportePDF(object):
                                     parent=estilos["Normal"])
 
         # Encabezado
-        encabezadoNombre = Paragraph("Andres Niño 1.0", estilos["Normal"])
+        encabezadoNombre = Paragraph("LONZA", estilos["Normal"])
         anchura, altura = encabezadoNombre.wrap(archivoPDF.width, archivoPDF.topMargin)
         encabezadoNombre.drawOn(canvas, archivoPDF.leftMargin, 736)
 
@@ -47,7 +47,7 @@ class reportePDF(object):
         encabezadoFecha.drawOn(canvas, archivoPDF.leftMargin, 736)
 
         # Pie de página
-        piePagina = Paragraph("Reporte generado por Andres Niño.", estilos["Normal"])
+        piePagina = Paragraph("Reporte generado por LONZA.", estilos["Normal"])
         anchura, altura = piePagina.wrap(archivoPDF.width, archivoPDF.bottomMargin)
         piePagina.drawOn(canvas, archivoPDF.leftMargin, 15 * mm + (0.2 * inch))
 
@@ -102,7 +102,7 @@ class reportePDF(object):
         historia.append(tabla)
 
         archivoPDF = SimpleDocTemplate(self.nombrePDF, leftMargin=50, rightMargin=50, pagesize=letter,
-                                       title="Reporte PDF", author="Andres Niño")
+                                       title="Reporte PDF", author="LONZA")
 
         try:
             archivoPDF.build(historia, onFirstPage=self._encabezadoPiePagina,
